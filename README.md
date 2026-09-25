@@ -1,10 +1,10 @@
 # AI-Powered Phishing Detection System
 
-A Python-based cybersecurity project that detects potentially malicious URLs and suspicious email content using feature engineering and multiple machine-learning models.
+A Python-based defensive cybersecurity project that analyses URLs and email content using feature engineering and multiple machine-learning models.
 
 ## Overview
 
-This project explores how machine-learning techniques can support phishing detection by analysing characteristics of URLs and email content. The system extracts security-relevant features and uses an ensemble of models to classify suspicious content.
+This project explores how machine learning can support phishing triage by extracting security-relevant indicators from URLs and email content and combining multiple classifiers to estimate phishing risk.
 
 ## Key Features
 
@@ -17,18 +17,14 @@ This project explores how machine-learning techniques can support phishing detec
 - Support Vector Machine (SVM) classification
 - Neural-network classification when TensorFlow is available
 - Model evaluation using accuracy, precision, recall, F1-score and confusion matrices
+- Stratified 80/20 train/test split for reproducibility
 - Model persistence with Joblib
 
 ## Technologies
 
-- Python
-- Pandas
-- NumPy
-- Scikit-learn
-- TensorFlow / Keras
-- Joblib
+Python • Pandas • NumPy • Scikit-learn • TensorFlow/Keras • Joblib
 
-## How It Works
+## Detection Workflow
 
 ```text
 URL / Email Input
@@ -43,59 +39,47 @@ Feature Scaling
 Random Forest / SVM / Neural Network
        |
        v
-Phishing Risk Classification
+Ensemble Risk Classification
+       |
+       v
+Evaluation & Analyst Review
 ```
 
-### URL Indicators Analysed
+## URL Indicators Analysed
 
-Examples include:
+Examples include URL/domain length, IP-address usage, number of subdomains, suspicious keywords, shortened URLs, HTTPS usage, path depth, suspicious file extensions and query parameters.
 
-- URL and domain length
-- IP-address usage
-- Number of subdomains
-- Suspicious keywords
-- URL-shortener domains
-- HTTPS usage
-- Path depth
-- Suspicious file extensions
-- Query parameters
+## Email Indicators Analysed
 
-### Email Indicators Analysed
-
-Examples include:
-
-- Urgency language
-- Suspicious links
-- Excessive capitalisation
-- Sender characteristics
-- Subject-line urgency
-- Money/payment references
-- Repeated characters and punctuation patterns
+Examples include urgency language, suspicious links, excessive capitalisation, sender characteristics, subject-line urgency, payment language and repeated punctuation patterns.
 
 ## Installation
-
-Clone the repository:
 
 ```bash
 git clone https://github.com/kkishore02/Phishing-Detection-System.git
 cd Phishing-Detection-System
-```
-
-Install the dependencies:
-
-```bash
 pip install -r requirements.txt
-```
-
-Run the project:
-
-```bash
 python phishing_detector.py
 ```
 
+## Evaluation
+
+The code includes evaluation logic for:
+
+- Accuracy
+- Precision
+- Recall
+- F1-score
+- Confusion matrix
+- False-positive rate
+
+See [EVALUATION.md](./EVALUATION.md) for the reproducibility and security-analysis approach.
+
+> Specific performance figures should only be reported when reproduced from a documented dataset and run environment.
+
 ## Security Relevance
 
-Phishing remains a common initial-access technique. This project demonstrates how automated feature extraction and classification can be used to support defensive security workflows and phishing triage.
+Phishing is a common initial-access technique. This project demonstrates how automated feature extraction and classification can support defensive security workflows, while recognising that model output should assist rather than replace analyst judgement.
 
 ## Skills Demonstrated
 
@@ -109,12 +93,13 @@ Phishing remains a common initial-access technique. This project demonstrates ho
 
 ## Future Improvements
 
-- Train on larger real-world phishing datasets
-- Add explainability for individual classifications
+- Add a reproducible public dataset notebook
+- Export evaluation metrics and confusion-matrix images
+- Add explainability for predictions
 - Add domain-age and reputation enrichment
-- Integrate with a SIEM or SOC workflow
+- Integrate with a SIEM/SOC workflow
 - Add unit tests and CI
-- Build a lightweight analyst dashboard
+- Build an analyst dashboard
 
 ## Disclaimer
 
@@ -123,4 +108,4 @@ This project is intended for defensive cybersecurity research, education and por
 ## Author
 
 **Kishore Bandi**  
-Cybersecurity MSc Graduate | Aspiring SOC Analyst
+MSc Cyber Security & Penetration Testing | Aspiring SOC / Cyber Security Analyst
